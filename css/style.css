@@ -6,11 +6,25 @@ canvas {
     display: block;
 }*/
 
-ul {
-  border: 5px solid red;
+div {
   height: 700px;
+  width: 700px;
+  background-color: silver;
+}
+
+ul {
+  width: 204px;
+  height: 204px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  border: 5px solid red;
 }
 
 li {
-  background-color: blie;
+  width: 100px;
+  height: 100px;
+  background-color:blue;
+  float: left;
+  margin: 1px;
 }
