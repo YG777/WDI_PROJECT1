@@ -6,11 +6,7 @@ canvas {
     display: block;
 }*/
 
-div {
-  height: 700px;
-  width: 700px;
-  background-color: silver;
-}
+
 
 ul {
   width: 204px;
@@ -27,4 +23,10 @@ li {
   background-color:blue;
   float: left;
   margin: 1px;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+  background-color: silver;
 }
