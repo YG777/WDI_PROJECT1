@@ -96,11 +96,11 @@ h2 {
 
 ul {
   width: 535px;
-  height: 215px;
+  height: 214px;
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  border: 5px solid #E50914;
+  border: 5px solid red;
 }
 
 li {

@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
   ];
 
-  let  countMatchedCards = 0;
+  var  countMatchedCards = 0;
 
   function shuffle(a) {
     for (let i = a.length; i; i--) {
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //id comes from UI
+    ('').innerHTML = "Score: " + score;
   function select(id) {
     for (let i = 0; i < cards.length; i++) {
       let cardSel = cards[i];
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   /*  UI logic below here  */
+
   function createCards() {
     for (let i = 0; i < cards.length; i++) {
       $(`<li id=${cards[i].id}>${cards[i].name}</li>`).appendTo($('.game-board'));
@@ -146,7 +148,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 1000);
   });
-
+// function cardsLi {
+//
+// }
   $('li').on('click', function() {
     var id = $(this).attr('id');
     select(id);
@@ -157,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("Congratulations, you won! Your score is " + score);
       }
     }
-
 
     console.log(score);
     // console.table(cards);
