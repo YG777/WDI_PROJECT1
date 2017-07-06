@@ -4,24 +4,70 @@ document.addEventListener('DOMContentLoaded', function() {
   const cards = [{
       name: "one",
       id: "card1",
+      img: "images/one.jpg",
       matched: false,
       selected: false
     },
     {
       name: "one",
       id: "card2",
+      img: "images/one.jpg",
       matched: false,
       selected: false
     },
     {
       name: "two",
       id: "card3",
+      img: "images/two.jpg",
       matched: false,
       selected: false
     },
     {
       name: "two",
       id: "card4",
+      img: "images/two.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "tree",
+      id: "card5",
+      img: "images/three.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "tree",
+      id: "card6",
+      img: "images/three.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "four",
+      id: "card7",
+      img: "images/four.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "four",
+      id: "card8",
+      img: "images/four.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "five",
+      id: "card9",
+      img: "images/five.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "five",
+      id: "card10",
+      img: "images/five.jpg",
       matched: false,
       selected: false
     },
@@ -67,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
       //UI --> hide cards
       selectedCard[0].selected = false;
       selectedCard[1].selected = false;
+      countMatchedCards += 0;
       return false;
     }
   }
@@ -81,21 +128,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /*  UI logic below here  */
   function createCards() {
-    for (var i = 0; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
       $(`<li id=${cards[i].id}>${cards[i].name}</li>`).appendTo($('.game-board'));
     }
   }
   shuffle(cards);
   createCards();
-  var score = countMatchedCards + 15;
-  $('button').one('click', function() {
+
+  $('button').on('click', function() {
     var secs = 0;
     var setTime = setInterval(function() {
       secs++;
       console.log(secs);
       if (secs > 5) {
         clearInterval(setTime);
-        alert("Time is over, you lost!Your score is " +score);
+        alert("Time is over, you lost!Your score is " + score);
       }
     }, 1000);
   });
@@ -104,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var id = $(this).attr('id');
     select(id);
     var matched = match();
-
+    var score = countMatchedCards + 15;
     if (matched === true) {
       if (isGameWon()) {
         alert("Congratulations, you won! Your score is " + score);
@@ -112,8 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    console.log(matched);
-    console.table(cards);
+    console.log(score);
+    // console.table(cards);
 
   });
 
