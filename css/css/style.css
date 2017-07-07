@@ -87,13 +87,12 @@ h2 {
 }
 
 ul {
-  width: 322px;
-  height: 215px;
+  width: 535px;
+  height: 214px;
   list-style: none;
-  text-align: center;
   margin: 0 auto;
   padding: 0;
-  border: 10px solid #fdf3f3;
+  border: 5px solid #fdf3f3;
   background:  #221F1F;
 
 }

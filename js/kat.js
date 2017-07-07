@@ -29,51 +29,50 @@ document.addEventListener('DOMContentLoaded', function() {
       matched: false,
       selected: false
     },
-    {
-      name: "tree",
-      id: "card5",
-      img: "images/three.jpg",
-      matched: false,
-      selected: false
-    },
-    {
-      name: "tree",
-      id: "card6",
-      img: "images/three.jpg",
-      matched: false,
-      selected: false
-    },
-    {
-      name: "four",
-      id: "card7",
-      img: "images/four.jpg",
-      matched: false,
-      selected: false
-    },
-    {
-      name: "four",
-      id: "card8",
-      img: "images/four.jpg",
-      matched: false,
-      selected: false
-    },
-    {
-      name: "five",
-      id: "card9",
-      img: "images/five.jpg",
-      matched: false,
-      selected: false
-    },
-    {
-      name: "five",
-      id: "card10",
-      img: "images/five.jpg",
-      matched: false,
-      selected: false
-    },
-  ];
 
-  var  countMatchedCards = 0;
+        {
+          name: "tree",
+          id: "card5",
+          img: "images/tree.png",
+          matched: false,
+          selected: false
+        },
+        {
+          name: "tree",
+          id: "card6",
+          img: "images/tree.png",
+          matched: false,
+          selected: false
+        },
+        // {
+        //   name: "four",
+        //   id: "card7",
+        //   img: "images/four.jpg",
+        //   matched: false,
+        //   selected: false
+        // },
+        // {
+        //   name: "four",
+        //   id: "card8",
+        //   img: "images/four.jpg",
+        //   matched: false,
+        //   selected: false
+        // },
+        // {
+        //   name: "five",
+        //   id: "card9",
+        //   img: "images/five.jpg",
+        //   matched: false,
+        //   selected: false
+        // },
+        // {
+        //   name: "five",
+        //   id: "card10",
+        //   img: "images/five.jpg",
+        //   matched: false,
+        //   selected: false
+        // },
+  ];
 
   function shuffle(a) {
     for (let i = a.length; i; i--) {
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //id comes from UI
-    ('').innerHTML = "Score: " + score;
   function select(id) {
     for (let i = 0; i < cards.length; i++) {
       let cardSel = cards[i];
@@ -102,22 +100,20 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     if (selectedCard.length < 2) {
       return;
-      //gets card's selected property
     }
-    //get items from cards arr with slected=true and same names
     if (selectedCard[0].name === selectedCard[1].name) {
       selectedCard[0].matched = true;
       selectedCard[1].matched = true;
       countMatchedCards += 2;
+      score += 15;
       return true;
     } else {
-      //UI --> hide cards
       selectedCard[0].selected = false;
       selectedCard[1].selected = false;
-      countMatchedCards += 0;
       return false;
     }
   }
+  var countMatchedCards = 0;
 
   function isGameWon() {
     let numberOfCards = cards.length;
@@ -126,45 +122,68 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-
   /*  UI logic below here  */
-
   function createCards() {
     for (let i = 0; i < cards.length; i++) {
-      $(`<li id=${cards[i].id}>${cards[i].name}</li>`).appendTo($('.game-board'));
+      var card = cards[i];
+      $(`<li id=${card.id}>
+        <img src="images/background.png" class="back" />
+        <img src="${card.img}" class="front hidden" />
+        </li>`).appendTo($('.game-board'));
     }
   }
   shuffle(cards);
-  createCards();
 
-  $('button').on('click', function() {
-    var secs = 0;
-    var setTime = setInterval(function() {
-      secs++;
-      console.log(secs);
-      if (secs > 5) {
-        clearInterval(setTime);
-        alert("Time is over, you lost!Your score is " + score);
-      }
-    }, 1000);
-  });
-// function cardsLi {
-//
-// }
-  $('li').on('click', function() {
-    var id = $(this).attr('id');
+  var score = 0;
+  var lastCardSelected;
+  function showCard(card){
+    $("img.back", card).addClass('hidden');
+    $("img.front", card).removeClass("hidden");
+  }
+
+  function hideCard(card){
+    $("img.back", card).removeClass('hidden');
+    $("img.front", card).addClass("hidden");
+  }
+
+  function clickCard() {
+    var card = $(this);
+    showCard(card);
+    var id = card.attr('id');
     select(id);
     var matched = match();
-    var score = countMatchedCards + 15;
     if (matched === true) {
+      $('#scoreBoard').html("Your score is: " + score);
       if (isGameWon()) {
         alert("Congratulations, you won! Your score is " + score);
+        setTimeout(function(){
+          document.location.reload();
+        }, 1000);
       }
+      // $('#scoreBoard').html("Your score is: " + score);
+    } else if (matched === false){
+      hideCard(card);
+      hideCard(lastCardSelected);
+    } else {
+      lastCardSelected = card;
     }
+  }
 
-    console.log(score);
-    // console.table(cards);
-
+  $("#start").one('click', function() {
+    createCards();
+    $('li').on('click', clickCard);
   });
 
+    $('#start').on('click', function() {
+      var secs = 0;
+      var setTime = setInterval(function() {
+        secs++;
+        console.log(secs);
+        if (secs > 5) {
+          clearInterval(setTime);
+          alert("Time is over, you lost! Your score is " + score);
+          document.location.reload();
+        }
+      }, 2000);
+    });
 });
