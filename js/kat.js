@@ -1,6 +1,5 @@
-//: Playground - noun: a place where people can play
+
 document.addEventListener('DOMContentLoaded', function() {
-  //CLASSWORK W03D01 PM
   const cards = [{
       name: "one",
       id: "card1",
@@ -30,48 +29,48 @@ document.addEventListener('DOMContentLoaded', function() {
       selected: false
     },
 
-        {
-          name: "tree",
-          id: "card5",
-          img: "images/tree.png",
-          matched: false,
-          selected: false
-        },
-        {
-          name: "tree",
-          id: "card6",
-          img: "images/tree.png",
-          matched: false,
-          selected: false
-        },
-        // {
-        //   name: "four",
-        //   id: "card7",
-        //   img: "images/four.jpg",
-        //   matched: false,
-        //   selected: false
-        // },
-        // {
-        //   name: "four",
-        //   id: "card8",
-        //   img: "images/four.jpg",
-        //   matched: false,
-        //   selected: false
-        // },
-        // {
-        //   name: "five",
-        //   id: "card9",
-        //   img: "images/five.jpg",
-        //   matched: false,
-        //   selected: false
-        // },
-        // {
-        //   name: "five",
-        //   id: "card10",
-        //   img: "images/five.jpg",
-        //   matched: false,
-        //   selected: false
-        // },
+    {
+      name: "tree",
+      id: "card5",
+      img: "images/tree.png",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "tree",
+      id: "card6",
+      img: "images/tree.png",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "four",
+      id: "card7",
+      img: "images/four.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "four",
+      id: "card8",
+      img: "images/four.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "five",
+      id: "card9",
+      img: "images/five.jpg",
+      matched: false,
+      selected: false
+    },
+    {
+      name: "five",
+      id: "card10",
+      img: "images/five.jpg",
+      matched: false,
+      selected: false
+    },
   ];
 
   function shuffle(a) {
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  //id comes from UI
   function select(id) {
     for (let i = 0; i < cards.length; i++) {
       let cardSel = cards[i];
@@ -93,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function match() {
     let selectedCard = cards.filter(function(card) {
-      //return true if selected is true and matched is false
       let firstSelected = card.selected === true;
       let toMatch = card.matched === false;
       return firstSelected && toMatch;
@@ -136,12 +133,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var score = 0;
   var lastCardSelected;
-  function showCard(card){
+
+  function showCard(card) {
     $("img.back", card).addClass('hidden');
     $("img.front", card).removeClass("hidden");
   }
 
-  function hideCard(card){
+  function hideCard(card) {
     $("img.back", card).removeClass('hidden');
     $("img.front", card).addClass("hidden");
   }
@@ -156,12 +154,11 @@ document.addEventListener('DOMContentLoaded', function() {
       $('#scoreBoard').html("Your score is: " + score);
       if (isGameWon()) {
         alert("Congratulations, you won! Your score is " + score);
-        setTimeout(function(){
+        setTimeout(function() {
           document.location.reload();
         }, 1000);
       }
-      // $('#scoreBoard').html("Your score is: " + score);
-    } else if (matched === false){
+    } else if (matched === false) {
       hideCard(card);
       hideCard(lastCardSelected);
     } else {
@@ -174,16 +171,16 @@ document.addEventListener('DOMContentLoaded', function() {
     $('li').on('click', clickCard);
   });
 
-    $('#start').on('click', function() {
-      var secs = 0;
-      var setTime = setInterval(function() {
-        secs++;
-        console.log(secs);
-        if (secs > 5) {
-          clearInterval(setTime);
-          alert("Time is over, you lost! Your score is " + score);
-          document.location.reload();
-        }
-      }, 2000);
-    });
+  $('#start').on('click', function() {
+    var secs = 0;
+    var setTime = setInterval(function() {
+      secs++;
+      console.log(secs);
+      if (secs > 5) {
+        clearInterval(setTime);
+        alert("Time is over, you lost! Your score is " + score);
+        document.location.reload();
+      }
+    }, 4500);
+  });
 });

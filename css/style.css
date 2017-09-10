@@ -55,7 +55,6 @@ table {
 	border-spacing: 0;
 }
 
-
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700);
 
 body {
@@ -87,7 +86,7 @@ h2 {
 }
 
 ul {
-  width: 322px;
+  width: 536.5px;
   height: 215px;
   list-style: none;
   text-align: center;
